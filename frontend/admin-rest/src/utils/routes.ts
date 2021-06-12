@@ -1,0 +1,20 @@
+export const ROUTES = {
+  DASHBOARD: "/dashboard",
+  LOGIN: "/",
+  ORDER_STATUS: "/order-status",
+  ORDERS: "/orders",
+  RATE_LIST: '/rate-list',
+  PRODUCTS: "/products",
+  COUPONS: "/coupons",
+  CUSTOMERS: "/customers",
+  TAXES: "/taxes",
+  SHIPPINGS: "/shippings",
+  SETTINGS: "/settings",
+  CATEGORIES: "/categories",
+  TYPES: "/types",
+  PROFILE_UPDATE: "/profile-update",
+  LOGOUT: "/logout",
+  ATTRIBUTES: "/attributes",
+  ATTRIBUTE_VALUES: "/attribute-values",
+
+};
