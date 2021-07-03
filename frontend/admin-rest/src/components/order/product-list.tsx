@@ -1,12 +1,9 @@
 import Pagination from "@components/ui/pagination";
 import Image from "next/image";
-import { Table } from "@components/ui/table";
-import ActionButtons from "@components/common/action-buttons";
-import { siteSettings } from "@settings/site.settings";
+import {Table} from "@components/ui/table";
+import {siteSettings} from "@settings/site.settings";
 import usePrice from "@utils/use-price";
-import { ROUTES } from "@utils/routes";
-import Badge from "@components/ui/badge/badge";
-import { Product, ProductPaginator } from "@ts-types/generated";
+import {ProductPaginator} from "@ts-types/generated";
 
 const columns = [
   // {
@@ -99,7 +96,7 @@ const columns = [
     key: "actions",
     align: "center",
     width: 80,
-    render: (id: string, record: Product) => <button>Add to Cart</button>,
+    render: () => <button>Add to Cart</button>,
   },
 ];
 

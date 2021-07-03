@@ -19,6 +19,7 @@ http.interceptors.request.use(
     config.headers = {
       ...config.headers,
       Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Origin': '*'
     };
     return config;
   },
