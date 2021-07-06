@@ -112,8 +112,9 @@ export  default  function rateList(){
         return new Promise((resolve, reject) =>{
             const errors = {};
             state.products.map(product => {
-                if(!product.price || typeof product.price !== 'number' ){
+                if(!product.price){
                     errors[product.id] = 'Invalid Input';
+                    console.log(product);
                 }
                 else if( product.price < product.sale_price){
                     errors[product.id] = 'Price  less then sale price';

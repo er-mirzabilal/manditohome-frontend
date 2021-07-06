@@ -12,11 +12,16 @@ const fetchOrders = async ({ queryKey }: QueryParamsType) => {
     limit = 20,
     orderBy = "updated_at",
     sortedBy = "DESC",
+    fromDate,
+    toDate
+
   } = params as QueryOptionsType;
   const searchString = stringifySearchQuery({
     tracking_number: text,
   });
-  const url = `${API_ENDPOINTS.ORDERS}?search=${searchString}&page=${page}&limit=${limit}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+  let url = `${API_ENDPOINTS.ORDERS}?search=${searchString}&page=${page}&limit=${limit}&orderBy=${orderBy}&sortedBy=${sortedBy}`;
+  if(fromDate && toDate)
+   url = `${API_ENDPOINTS.ORDERS}?search=${searchString}&page=${page}&limit=${limit}&orderBy=${orderBy}&sortedBy=${sortedBy}&fromDate=${fromDate.toLocaleDateString()}&toDate=${toDate.toLocaleDateString()}`;
   const {
     data: { data, ...rest },
   } = await Orders.all(url);
