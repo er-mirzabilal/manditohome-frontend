@@ -35,6 +35,8 @@ export type QueryOptionsType = {
   limit?: number;
   orderBy?: OrderField;
   sortedBy?: SortOrder;
+  fromDate?: Date;
+  toDate?: Date;
 };
 
 export type QueryParamsType = {

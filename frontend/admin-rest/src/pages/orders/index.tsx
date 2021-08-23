@@ -7,12 +7,16 @@ import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
 import { useOrdersQuery } from "@data/order/use-orders.query";
 import {DatePicker} from "@components/ui/date-picker";
+import Button from "@components/ui/button";
+import SidebarModal from "@components/common/sidebarModal";
+import OrderItemsTotal from "@components/order-items-total/order-item-total";
 
 export default function Orders() {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [fromDate, setFromDate] = useState(new Date);
   const [toDate, setToDate] = useState(new Date);
+  const [open, setOpen] = useState(false);
 
   const { data, isLoading: loading, error } = useOrdersQuery({
     limit: 20,
@@ -21,8 +25,8 @@ export default function Orders() {
     fromDate,
     toDate,
   });
-  if (loading) return <Loader />;
   console.log(data);
+  if (loading) return <Loader />;
   if (error) return <ErrorMessage message={error.message} />;
   function handleSearch({ searchText }: { searchText: string }) {
     setSearchTerm(searchText);
@@ -31,6 +35,8 @@ export default function Orders() {
   function handlePagination(current: any) {
     setPage(current);
   }
+  // @ts-ignore
+  // @ts-ignore
   return (
     <>
       <Card className="flex flex-col md:flex-row items-center mb-4">
@@ -73,10 +79,17 @@ export default function Orders() {
               className="border border-gray-300"
           />
           </div>
-        </div>
+          <div className='px-1'>
+              <Button onClick={() => setOpen(true)}> + </Button>
+          </div>
+          </div>
       </Card>
 
       <OrderList orders={data?.orders} onPagination={handlePagination} />
+      <SidebarModal open={open} onClose={()=>{setOpen(false)}}>
+        <OrderItemsTotal items={data?.orders?.data} closeSidebar={()=> {setOpen(false)}}/>
+      </SidebarModal>
+
     </>
   );
 }

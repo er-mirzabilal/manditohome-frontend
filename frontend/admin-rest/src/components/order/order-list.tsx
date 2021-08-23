@@ -95,7 +95,7 @@ const columns = [
     dataIndex: "id",
     key: "download",
     align: "center",
-    render: (id: string, order: Order) => (
+    render: (_id: string, order: Order) => (
       <div>
         <PDFDownloadLink
           document={<InvoicePdf order={order} />}
