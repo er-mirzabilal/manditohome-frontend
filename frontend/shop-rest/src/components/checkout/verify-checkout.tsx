@@ -15,7 +15,7 @@ import { useCart } from "@contexts/quick-cart/cart.context";
 const VerifyCheckout = () => {
   const router = useRouter();
   const [errorMessage, setError] = useState("");
-  const { billing_address, shipping_address, setCheckoutData } = useCheckout();
+  const {shipping_address, setCheckoutData } = useCheckout();
   const { items, total, isEmpty } = useCart();
   const { openModal, setModalView } = useUI();
   const { price: subtotal } = usePrice(
@@ -30,14 +30,11 @@ const VerifyCheckout = () => {
 
   async function handleVerifyCheckout() {
     if (loggedIn()) {
-      if (billing_address && shipping_address) {
+      if ( shipping_address) {
         verifyCheckout(
           {
             amount: total,
             products: items?.map((item) => formatOrderedProduct(item)),
-            billing_address: {
-              ...(billing_address?.address && billing_address.address),
-            },
             shipping_address: {
               ...(shipping_address?.address && shipping_address.address),
             },

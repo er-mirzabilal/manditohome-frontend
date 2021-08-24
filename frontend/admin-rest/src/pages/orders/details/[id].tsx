@@ -191,23 +191,7 @@ export default function OrderDetailsPage() {
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
-        <div className="w-full sm:w-1/2 sm:pr-8 mb-10 sm:mb-0">
-          <h3 className="text-heading font-medium mb-3 pb-2 border-b border-gray-200">
-            Billing address
-          </h3>
-
-          <div className="text-sm text-gray-500 flex flex-col items-start space-y-1">
-            <span>{data?.order?.customer?.name}</span>
-            {data?.order?.billing_address && (
-              <span>{formatAddress(data.order.billing_address)}</span>
-            )}
-            {data?.order?.customer_contact && (
-              <span>{data?.order?.customer_contact}</span>
-            )}
-          </div>
-        </div>
-
-        <div className="w-full sm:w-1/2 sm:pl-8">
+        <div className="w-full">
           <h3 className="text-heading text-left font-medium sm:text-right mb-3 pb-2 border-b border-gray-200">
             Shipping address
           </h3>

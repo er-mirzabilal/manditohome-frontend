@@ -52,7 +52,7 @@ export default function Orders() {
             <label>From</label>
           <DatePicker
               dateFormat="dd/MM/yyyy"
-              onChange={(date)=> setFromDate(date) }
+              onChange={(date:any)=> setFromDate(date) }
               onBlur={()=>{}}
               selected={fromDate}
               selectsStart
@@ -68,7 +68,7 @@ export default function Orders() {
 
             <DatePicker
               dateFormat="dd/MM/yyyy"
-              onChange={(date)=> setToDate(date)}
+              onChange={(date:any)=> setToDate(date)}
               onBlur={()=>{}}
               selected={toDate}
               selectsStart

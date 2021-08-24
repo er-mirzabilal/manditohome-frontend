@@ -4,7 +4,6 @@ import { API_ENDPOINTS } from "@utils/api/endpoints";
 export type VerifyCheckoutInputType = {
   amount: number;
   products: any[];
-  billing_address: any;
   shipping_address: any;
 };
 

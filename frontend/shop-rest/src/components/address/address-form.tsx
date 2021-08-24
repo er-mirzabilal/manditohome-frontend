@@ -35,20 +35,19 @@ const addressSchema = yup.object().shape({
 
 const CreateOrUpdateAddressForm = () => {
   const {
-    modalData: { customerId, address, type },
+    modalData: { customerId, address },
     closeModal,
   } = useUI();
   const { mutate: updateProfile } = useUpdateCustomerMutation();
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(addressSchema),
     defaultValues: {
       title: address?.title ?? "",
-      type: address?.type ?? type,
+      type: address?.type ?? 'shipping',
       ...(address?.address && address),
     },
   });
@@ -85,20 +84,13 @@ const CreateOrUpdateAddressForm = () => {
 
           <div className="space-x-4 flex items-center">
             <Radio
-              id="billing"
-              {...register("type", { required: "Type is required" })}
-              type="radio"
-              value="billing"
-              label="Billing"
+                id="shipping"
+                {...register("type", { required: "Type is required" })}
+                type="radio"
+                value="shipping"
+                label="Shipping"
             />
 
-            <Radio
-              id="shipping"
-              {...register("type", { required: "Type is required" })}
-              type="radio"
-              value="shipping"
-              label="Shipping"
-            />
           </div>
         </div>
 

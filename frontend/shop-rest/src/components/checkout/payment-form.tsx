@@ -58,13 +58,12 @@ const PaymentForm = () => {
   } = useForm<FormValues>({
     resolver: yupResolver(paymentSchema),
     defaultValues: {
-      payment_gateway: "stripe",
+      payment_gateway: "cod",
     },
   });
 
   const { items } = useCart();
   const {
-    billing_address,
     shipping_address,
     delivery_time,
     checkoutData,
@@ -100,9 +99,6 @@ const PaymentForm = () => {
       delivery_fee: checkoutData?.shipping_charge,
       delivery_time: delivery_time?.description,
       payment_gateway: values.payment_gateway,
-      billing_address: {
-        ...(billing_address?.address && billing_address.address),
-      },
       shipping_address: {
         ...(shipping_address?.address && shipping_address.address),
       },
@@ -145,22 +141,24 @@ const PaymentForm = () => {
 
         <div className="space-x-4 flex items-center">
           <Radio
+              id="cod"
+              type="radio"
+              {...register("payment_gateway")}
+              value="cod"
+              label="Cash On Delivery"
+              className=""
+          />
+
+          <Radio
             id="stripe"
             type="radio"
             {...register("payment_gateway")}
             value="stripe"
             label="Stripe"
             className=""
+            disabled
           />
 
-          <Radio
-            id="cod"
-            type="radio"
-            {...register("payment_gateway")}
-            value="cod"
-            label="Cash On Delivery"
-            className=""
-          />
         </div>
       </div>
 
