@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import Button from "@components/ui/button";
 import FormattedInput from "@components/ui/formatted-input";
 import Input from "@components/ui/input";
@@ -19,6 +20,7 @@ import {
   calculatePaidTotal,
   calculateTotal,
 } from "@contexts/quick-cart/cart.utils";
+import {useCustomerQuery} from "@data/customer/use-customer.query";
 interface FormValues {
   payment_gateway: "cod" | "stripe";
   contact: string;
@@ -46,6 +48,7 @@ const paymentSchema = Yup.object().shape({
 
 const PaymentForm = () => {
   const router = useRouter();
+  const {data: customer} = useCustomerQuery();
   const { mutate: createOrder, isLoading: loading } = useCreateOrderMutation();
   const { data: orderStatusData } = useOrderStatusesQuery();
   const {
@@ -53,7 +56,6 @@ const PaymentForm = () => {
     handleSubmit,
     setValue,
     watch,
-
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(paymentSchema),
@@ -61,7 +63,9 @@ const PaymentForm = () => {
       payment_gateway: "cod",
     },
   });
-
+  useEffect(() => {
+    setValue('contact', customer?.me?.profile?.contact);
+  },[customer])
   const { items } = useCart();
   const {
     shipping_address,
