@@ -18,7 +18,8 @@ module.exports = withPWA({
       "picsum.photos",
       "pickbazar-sail.test",
       "pickbazarlaravel.s3.ap-southeast-1.amazonaws.com",
-      "localhost"
+      "localhost",
+      "manditohome.local"
     ],
   },
   typescript: {
