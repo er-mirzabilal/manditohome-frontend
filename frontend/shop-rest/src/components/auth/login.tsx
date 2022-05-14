@@ -8,7 +8,7 @@ import Input from "@components/ui/input";
 import PasswordInput from "@components/ui/password-input";
 import Button from "@components/ui/button";
 import { useUI } from "@contexts/ui.context";
-import { CUSTOMER, SUPER_ADMIN } from "@utils/constants";
+import { CUSTOMER, SUPER_ADMIN, RECEPTIONIST } from "@utils/constants";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -52,7 +52,7 @@ const LoginForm = () => {
         onSuccess: (data) => {
           if (
             data?.token &&
-            (data?.permissions?.includes(CUSTOMER) ||
+            (data?.permissions?.includes(CUSTOMER) || data?.permissions?.includes(RECEPTIONIST) ||
               data?.permissions?.includes(SUPER_ADMIN))
           ) {
             Cookies.set("auth_token", data.token);
