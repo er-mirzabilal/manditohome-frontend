@@ -1,12 +1,14 @@
 import { CoreApi } from "@utils/api/core.api";
 import { API_ENDPOINTS } from "@utils/api/endpoints";
 export type LoginInputType = {
-  email: string;
+  phone: string,
+  // email: string;
   password: string;
 };
 export type RegisterUserInputType = {
   name: string;
   email: string;
+  phone: string;
   password: string;
 };
 

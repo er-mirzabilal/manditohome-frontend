@@ -16,6 +16,7 @@ import * as yup from "yup";
 type FormValues = {
   name: string;
   email: string;
+  phone: string;
   password: string;
 };
 
@@ -28,6 +29,7 @@ const registerFormSchema = yup.object().shape({
 const defaultValues = {
   name: "",
   email: "",
+  phone: "",
   password: "",
 };
 
@@ -50,11 +52,12 @@ const RegisterForm = () => {
     router.push(`/${path}`);
     closeModal();
   }
-  function onSubmit({ name, email, password }: FormValues) {
+  function onSubmit({ name, email, phone, password }: FormValues) {
     mutate(
       {
         name,
         email,
+        phone,
         password,
       },
       {
@@ -92,11 +95,11 @@ const RegisterForm = () => {
     );
   }
   return (
-    <div className="py-6 px-5 sm:p-8 bg-white w-screen md:max-w-md h-screen md:h-auto flex flex-col justify-center">
+    <div className="flex flex-col justify-center w-screen h-screen px-5 py-6 bg-white sm:p-8 md:max-w-md md:h-auto">
       <div className="flex justify-center">
         <Logo />
       </div>
-      <p className="text-center text-sm md:text-base leading-relaxed px-2 sm:px-0 text-body mt-4 sm:mt-5 mb-7 sm:mb-10">
+      <p className="px-2 mt-4 text-sm leading-relaxed text-center md:text-base sm:px-0 text-body sm:mt-5 mb-7 sm:mb-10">
         By signing up, you agree to our
         <span
           onClick={() => handleNavigate("terms")}
@@ -138,6 +141,14 @@ const RegisterForm = () => {
           className="mb-5"
           error={errors.email?.message}
         />
+        <Input
+          label="Phone Number"
+          {...register("phone")}
+          type="text"
+          variant="outline"
+          className="mb-5"
+          error={errors.phone?.message}
+        />
         <PasswordInput
           label="Password"
           {...register("password")}
@@ -153,17 +164,17 @@ const RegisterForm = () => {
       </form>
       {/* End of forgot register form */}
 
-      <div className="flex flex-col items-center justify-center relative text-sm text-heading mt-8 sm:mt-11 mb-6 sm:mb-8">
+      <div className="relative flex flex-col items-center justify-center mt-8 mb-6 text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
         <span className="absolute left-2/4 -top-2.5 px-2 -ml-4 bg-white">
           Or
         </span>
       </div>
-      <div className="text-sm sm:text-base text-body text-center">
+      <div className="text-sm text-center sm:text-base text-body">
         Already have an account?{" "}
         <button
           onClick={() => setModalView("LOGIN_VIEW")}
-          className="ml-1 underline text-primary font-semibold transition-colors duration-200 focus:outline-none hover:text-primary-2 focus:text-primary-2 hover:no-underline focus:no-underline"
+          className="ml-1 font-semibold underline transition-colors duration-200 text-primary focus:outline-none hover:text-primary-2 focus:text-primary-2 hover:no-underline focus:no-underline"
         >
           Login
         </button>
